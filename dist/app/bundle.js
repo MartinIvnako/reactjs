@@ -84,11 +84,19 @@
 	            // vrat mi vyrenderovane
 	            return _react2.default.createElement(
 	                "div",
-	                null,
+	                { className: "container" },
 	                _react2.default.createElement(
-	                    "h1",
-	                    null,
-	                    "Hello!"
+	                    "div",
+	                    { className: "row" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "col-xs-10 col-xs-offset-1" },
+	                        _react2.default.createElement(
+	                            "h1",
+	                            null,
+	                            "Hello!"
+	                        )
+	                    )
 	                )
 	            );
 	        }
