@@ -1,10 +1,11 @@
 import React from "react";
 
-export class Home extends React.Component { 
+export class Home extends React.Component {
     render() {
         return(
             <div>
-                <p>new component</p>
+                <p>This is working.</p>
+                { 2 + 2}
             </div>
         );
     }

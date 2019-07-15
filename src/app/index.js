@@ -19,7 +19,7 @@ class App extends React.Component {     // root compoment
                 </div>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <Home/>
+                        <Home name={"Max"} age={27}/>
                     </div>
                 </div>
             </div>
@@ -35,9 +35,11 @@ render(<App/>, window.document.getElementById("app"));
 
 
 
-
+// https://www.youtube.com/watch?v=GIU8ekYndKw&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=7
 
 
 
 
 // extend - rozsirenie
+// props - ak mame componentu, v inej komponente, ktora je v inej componente a tu chceme nadefnovat
+
