@@ -23029,13 +23029,21 @@
 	var Home = exports.Home = function (_React$Component) {
 	    _inherits(Home, _React$Component);
 	
-	    function Home() {
+	    function Home(props) {
 	        _classCallCheck(this, Home);
 	
-	        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+	
+	        _this.age = props.age;
+	        return _this;
 	    }
 	
 	    _createClass(Home, [{
+	        key: "onMakeOlder",
+	        value: function onMakeOlder() {
+	            this.age += 3;
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -23049,7 +23057,12 @@
 	                _react2.default.createElement(
 	                    "p",
 	                    null,
-	                    this.props.user.name
+	                    this.props.name
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    this.age
 	                ),
 	                _react2.default.createElement(
 	                    "p",
@@ -23063,7 +23076,12 @@
 	                    })
 	                ),
 	                _react2.default.createElement("hr", null),
-	                this.props.children
+	                this.props.children,
+	                _react2.default.createElement(
+	                    "button",
+	                    { onClick: this.onMakeOlder.bind(this), className: "btn btn-primary" },
+	                    "Make me older!"
+	                )
 	            );
 	        }
 	    }]);
@@ -23072,12 +23090,19 @@
 	}(_react2.default.Component);
 	
 	Home.propTypes = {
-	    name: _react2.default.propTypes.string,
-	    age: _react2.default.propTypes.number,
-	    user: _react2.default.propTypes.object
+	    name: _react2.default.PropTypes.string,
+	    age: _react2.default.PropTypes.number,
+	    user: _react2.default.PropTypes.object,
+	    children: _react2.default.PropTypes.element.isRequired
 	};
 	
 	// vramci poli musim pri poliach pouzivat key
+	
+	// this.onMakeOlder nasej class
+	// <button onClick={this.onMakeOlder.bind(this)} ...
+	// 
+	// 
+	// https://www.youtube.com/watch?v=OcM__8q6p4c&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=8
 
 /***/ }),
 /* 189 */

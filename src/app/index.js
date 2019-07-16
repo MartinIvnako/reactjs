@@ -51,3 +51,5 @@ render(<App/>, window.document.getElementById("app"));
 // extend - rozsirenie
 // props - ak mame componentu, v inej komponente, ktora je v inej componente a tu chceme nadefnovat
 // prop type - tell react, typ of props
+// bind - svazat
+// executed - odkazuje na
