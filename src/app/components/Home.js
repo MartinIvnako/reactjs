@@ -11,7 +11,7 @@ export class Home extends React.Component {
     }
     
     onMakeOlder() {
-        this.setState({
+        this.setState({  // react funkcia ktora zabezpeci livereloading
             age: this.state.age + 3
         })
     }
@@ -29,6 +29,8 @@ export class Home extends React.Component {
 
                 <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary">Make me older!</button>
                 <button onClick={ () => this.onMakeOlder() } className="btn btn-primary">Make me older!</button>
+                <hr />
+                <button onClick={this.props.greet} className="btn btn-secondary">Click for alert message</button>
                   
             </div>
 
