@@ -49,8 +49,6 @@
 
 	"use strict";
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -71,86 +69,19 @@
 	
 	// create components
 	var App = function (_React$Component) {
-	    _inherits(App, _React$Component);
+	  _inherits(App, _React$Component);
 	
-	    function App() {
-	        _classCallCheck(this, App);
+	  function App() {
+	    _classCallCheck(this, App);
 	
-	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	    }
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	  }
 	
-	    _createClass(App, [{
-	        key: "onGreet",
-	        // root compoment
-	
-	        value: function onGreet() {
-	            alert('funguje to!');
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            // render method
-	            // premenne tieto alebo aj priamo v kode si mozem zobrazit na inej 
-	            //komponente pomocou {this.props.name}
-	            var user = {
-	                name: 'anna',
-	                hobbies: ['Volleyball', 'eeee']
-	            };
-	
-	            // vrat mi vyrenderovane
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "container" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "row" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "col-xs-10 col-xs-offset-1" },
-	                        _react2.default.createElement(_Header.Header, { homeLink: '15' })
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "row" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "col-xs-10 col-xs-offset-1" },
-	                        _react2.default.createElement(
-	                            _Home.Home,
-	                            { name: "Max", initialAge: 27, user: user, greet: this.onGreet },
-	                            _react2.default.createElement(
-	                                "p",
-	                                null,
-	                                "This is children"
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return App;
+	  return App;
 	}(_react2.default.Component);
 	
 	// metoda render zoberie classsu app, napis kde a zrejnderuj ju
-	
-	
 	(0, _reactDom.render)(_react2.default.createElement(App, null), window.document.getElementById("app"));
-	
-	// https://www.youtube.com/watch?v=GIU8ekYndKw&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=7
-	
-	
-	// extend - rozsirenie
-	// props - data prichadzajuce z inej komponenty, ak mame componentu, v inej komponente, ktora je v inej componente a tu chceme nadefnovat
-	// state - data ktore su dostupne priamo v danej komponente, do something with this
-	// prop type - tell react, typ of props
-	// bind - svazat
-	// executed - odkazuje na
-	
-	
-	// Komunikacia medzi rodicom a dietatom - ak chcem poslat nieco z dietata do rodica, musim pouzit funkciu
 
 /***/ }),
 /* 1 */
@@ -22947,29 +22878,11 @@
 
 	"use strict";
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Header = undefined;
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// stateless component - becasue i dont need state
-	var Header = exports.Header = function Header(props) {
-	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      props.homeLink
-	    )
-	  );
-	};
 
 /***/ }),
 /* 188 */
@@ -22984,8 +22897,6 @@
 	    value: true
 	});
 	exports.Home = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -23006,99 +22917,14 @@
 	var Home = exports.Home = function (_React$Component) {
 	    _inherits(Home, _React$Component);
 	
-	    function Home(props) {
+	    function Home() {
 	        _classCallCheck(this, Home);
 	
-	        var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
-	
-	        _this.state = {
-	            age: props.initialAge
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 	    }
-	
-	    _createClass(Home, [{
-	        key: "onMakeOlder",
-	        value: function onMakeOlder() {
-	            this.setState({ // react funkcia ktora zabezpeci livereloading
-	                age: this.state.age + 3
-	            });
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    "This is working."
-	                ),
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    this.props.name
-	                ),
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    this.state.age
-	                ),
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    this.props.user.hobbies.map(function (hobby, i) {
-	                        return _react2.default.createElement(
-	                            "li",
-	                            { key: i },
-	                            hobby
-	                        );
-	                    })
-	                ),
-	                _react2.default.createElement("hr", null),
-	                this.props.children,
-	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: this.onMakeOlder.bind(this), className: "btn btn-primary" },
-	                    "Make me older!"
-	                ),
-	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: function onClick() {
-	                            return _this2.onMakeOlder();
-	                        }, className: "btn btn-primary" },
-	                    "Make me older!"
-	                ),
-	                _react2.default.createElement("hr", null),
-	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: this.props.greet, className: "btn btn-secondary" },
-	                    "Click for alert message"
-	                )
-	            );
-	        }
-	    }]);
 	
 	    return Home;
 	}(_react2.default.Component);
-	
-	Home.propTypes = {
-	    name: _react2.default.PropTypes.string,
-	    initialAge: _react2.default.PropTypes.number,
-	    user: _react2.default.PropTypes.object,
-	    children: _react2.default.PropTypes.element.isRequired
-	};
-	
-	// vramci poli musim pri poliach pouzivat key
-	
-	// this.onMakeOlder.bind(this) nereprezentuje classu ale odkazuje sa na metodu nasej classy
-	// <button onClick={this.onMakeOlder.bind(this)} ...
-	// 
-	// 
-	// https://www.youtube.com/watch?v=OcM__8q6p4c&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=8
 
 /***/ }),
 /* 189 */
