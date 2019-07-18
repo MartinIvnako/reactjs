@@ -80,8 +80,14 @@
 	    }
 	
 	    _createClass(App, [{
-	        key: "render",
+	        key: "onGreet",
 	        // root compoment
+	
+	        value: function onGreet() {
+	            alert('funguje to!');
+	        }
+	    }, {
+	        key: "render",
 	        value: function render() {
 	            // render method
 	            // premenne tieto alebo aj priamo v kode si mozem zobrazit na inej 
@@ -90,6 +96,7 @@
 	                name: 'anna',
 	                hobbies: ['Volleyball', 'eeee']
 	            };
+	
 	            // vrat mi vyrenderovane
 	            return _react2.default.createElement(
 	                "div",
@@ -100,7 +107,7 @@
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "col-xs-10 col-xs-offset-1" },
-	                        _react2.default.createElement(_Header.Header, null)
+	                        _react2.default.createElement(_Header.Header, { homeLink: '15' })
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -111,7 +118,7 @@
 	                        { className: "col-xs-10 col-xs-offset-1" },
 	                        _react2.default.createElement(
 	                            _Home.Home,
-	                            { name: "Max", age: 27, user: user },
+	                            { name: "Max", initialAge: 27, user: user, greet: this.onGreet },
 	                            _react2.default.createElement(
 	                                "p",
 	                                null,
@@ -136,8 +143,14 @@
 	
 	
 	// extend - rozsirenie
-	// props - ak mame componentu, v inej komponente, ktora je v inej componente a tu chceme nadefnovat
+	// props - data prichadzajuce z inej komponenty, ak mame componentu, v inej komponente, ktora je v inej componente a tu chceme nadefnovat
+	// state - data ktore su dostupne priamo v danej komponente, do something with this
 	// prop type - tell react, typ of props
+	// bind - svazat
+	// executed - odkazuje na
+	
+	
+	// Komunikacia medzi rodicom a dietatom - ak chcem poslat nieco z dietata do rodica, musim pouzit funkciu
 
 /***/ }),
 /* 1 */
@@ -22935,11 +22948,9 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.Header = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -22947,52 +22958,18 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Header = exports.Header = function (_React$Component) {
-	    _inherits(Header, _React$Component);
-	
-	    function Header() {
-	        _classCallCheck(this, Header);
-	
-	        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-	    }
-	
-	    _createClass(Header, [{
-	        key: "render",
-	        value: function render() {
-	
-	            console.log(this.props);
-	            return _react2.default.createElement(
-	                "nav",
-	                { className: "navbar navbar-default" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "container" },
-	                    _react2.default.createElement(
-	                        "ul",
-	                        { className: "nav navbar-nav" },
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                "a",
-	                                { href: "#" },
-	                                "Home"
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Header;
-	}(_react2.default.Component);
+	// stateless component - becasue i dont need state
+	var Header = exports.Header = function Header(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      props.homeLink
+	    )
+	  );
+	};
 
 /***/ }),
 /* 188 */
@@ -23034,18 +23011,24 @@
 	
 	        var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 	
-	        _this.age = props.age;
+	        _this.state = {
+	            age: props.initialAge
+	        };
 	        return _this;
 	    }
 	
 	    _createClass(Home, [{
 	        key: "onMakeOlder",
 	        value: function onMakeOlder() {
-	            this.age += 3;
+	            this.setState({ // react funkcia ktora zabezpeci livereloading
+	                age: this.state.age + 3
+	            });
 	        }
 	    }, {
 	        key: "render",
 	        value: function render() {
+	            var _this2 = this;
+	
 	            return _react2.default.createElement(
 	                "div",
 	                null,
@@ -23062,7 +23045,7 @@
 	                _react2.default.createElement(
 	                    "p",
 	                    null,
-	                    this.age
+	                    this.state.age
 	                ),
 	                _react2.default.createElement(
 	                    "p",
@@ -23081,6 +23064,19 @@
 	                    "button",
 	                    { onClick: this.onMakeOlder.bind(this), className: "btn btn-primary" },
 	                    "Make me older!"
+	                ),
+	                _react2.default.createElement(
+	                    "button",
+	                    { onClick: function onClick() {
+	                            return _this2.onMakeOlder();
+	                        }, className: "btn btn-primary" },
+	                    "Make me older!"
+	                ),
+	                _react2.default.createElement("hr", null),
+	                _react2.default.createElement(
+	                    "button",
+	                    { onClick: this.props.greet, className: "btn btn-secondary" },
+	                    "Click for alert message"
 	                )
 	            );
 	        }
@@ -23091,14 +23087,14 @@
 	
 	Home.propTypes = {
 	    name: _react2.default.PropTypes.string,
-	    age: _react2.default.PropTypes.number,
+	    initialAge: _react2.default.PropTypes.number,
 	    user: _react2.default.PropTypes.object,
 	    children: _react2.default.PropTypes.element.isRequired
 	};
 	
 	// vramci poli musim pri poliach pouzivat key
 	
-	// this.onMakeOlder nasej class
+	// this.onMakeOlder.bind(this) nereprezentuje classu ale odkazuje sa na metodu nasej classy
 	// <button onClick={this.onMakeOlder.bind(this)} ...
 	// 
 	// 
