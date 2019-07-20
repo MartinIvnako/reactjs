@@ -6,14 +6,19 @@ export class Home extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            age: props.initialAge
-        }
+            age: props.initialAge,
+                homeLink: 'changed'
+        };
     }
     
     onMakeOlder() {
         this.setState({  // react funkcia ktora zabezpeci livereloading
             age: this.state.age + 3
         })
+    }
+
+    onChangeName() {
+        this.props.link(this.state.homeLink);
     }
     
     render() {
@@ -26,11 +31,9 @@ export class Home extends React.Component {
             
                 <hr />
                 {this.props.children}
-
                 <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary">Make me older!</button>
-                <button onClick={ () => this.onMakeOlder() } className="btn btn-primary">Make me older!</button>
-                <hr />
                 <button onClick={this.props.greet} className="btn btn-secondary">Click for alert message</button>
+                <button onClick={this.onChangeName.bind(this)} className="btn btn-secondary">Change name</button>
                   
             </div>
 
@@ -48,6 +51,7 @@ Home.propTypes = {
     name: React.PropTypes.string,
     initialAge: React.PropTypes.number,
     user: React.PropTypes.object,
+    link: React.PropTypes.func,
     children: React.PropTypes.element.isRequired,
 };
 
