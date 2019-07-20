@@ -7,7 +7,7 @@ export class Home extends React.Component {
         super();
         this.state = {
             age: props.initialAge,
-                homeLink: 'changed'
+                homeLink: props.initialLinkName
         };
     }
     
@@ -15,6 +15,12 @@ export class Home extends React.Component {
         this.setState({  // react funkcia ktora zabezpeci livereloading
             age: this.state.age + 3
         })
+    }
+
+    onHandleChange(event) {
+        this.setState({
+            homeLink: event.target.value
+        });
     }
 
     onChangeName() {
@@ -30,12 +36,20 @@ export class Home extends React.Component {
                 <p>{this.props.user.hobbies.map( (hobby, i) => <li key={i}>{hobby}</li>)}</p>
             
                 <hr />
-                {this.props.children}
                 <button onClick={this.onMakeOlder.bind(this)} className="btn btn-primary">Make me older!</button>
                 <button onClick={this.props.greet} className="btn btn-secondary">Click for alert message</button>
+                
+                
+                <hr />
+
+                <input 
+                type="text" 
+                value={this.state.homeLink} 
+                onChange={ (event) => this.onHandleChange(event)} 
+                /> {/* lissener */}
                 <button onClick={this.onChangeName.bind(this)} className="btn btn-secondary">Change name</button>
-                  
-            </div>
+                
+             </div>
 
 
 
@@ -49,10 +63,11 @@ export class Home extends React.Component {
 
 Home.propTypes = {
     name: React.PropTypes.string,
+    initialLinkName: React.PropTypes.string,
     initialAge: React.PropTypes.number,
     user: React.PropTypes.object,
     link: React.PropTypes.func,
-    children: React.PropTypes.element.isRequired,
+
 };
 
 // vramci poli musim pri poliach pouzivat key

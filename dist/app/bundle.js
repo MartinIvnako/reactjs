@@ -73,16 +73,29 @@
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
 	
+	    // root compoment
+	
+	
 	    function App() {
 	        _classCallCheck(this, App);
 	
-	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+	
+	        _this.state = {
+	            homeLink: 'Home link'
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(App, [{
+	        key: "onChangeLink",
+	        value: function onChangeLink(newName) {
+	            this.setState({
+	                homeLink: newName
+	            });
+	        }
+	    }, {
 	        key: "onGreet",
-	        // root compoment
-	
 	        value: function onGreet() {
 	            alert('funguje to!');
 	        }
@@ -107,7 +120,7 @@
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "col-xs-10 col-xs-offset-1" },
-	                        _react2.default.createElement(_Header.Header, { homeLink: '15' })
+	                        _react2.default.createElement(_Header.Header, { homeLink: this.state.homeLink })
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -118,7 +131,12 @@
 	                        { className: "col-xs-10 col-xs-offset-1" },
 	                        _react2.default.createElement(
 	                            _Home.Home,
-	                            { name: "Max", initialAge: 27, user: user, greet: this.onGreet },
+	                            {
+	                                name: "Max",
+	                                initialAge: 27,
+	                                user: user,
+	                                greet: this.onGreet,
+	                                link: this.onChangeLink.bind(this) },
 	                            _react2.default.createElement(
 	                                "p",
 	                                null,
@@ -22978,7 +22996,7 @@
   \************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -23012,71 +23030,72 @@
 	        var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
 	
 	        _this.state = {
-	            age: props.initialAge
+	            age: props.initialAge,
+	            homeLink: 'changed'
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(Home, [{
-	        key: "onMakeOlder",
+	        key: 'onMakeOlder',
 	        value: function onMakeOlder() {
 	            this.setState({ // react funkcia ktora zabezpeci livereloading
 	                age: this.state.age + 3
 	            });
 	        }
 	    }, {
-	        key: "render",
+	        key: 'onChangeName',
+	        value: function onChangeName() {
+	            this.props.link(this.state.homeLink);
+	        }
+	    }, {
+	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-	
 	            return _react2.default.createElement(
-	                "div",
+	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    "p",
+	                    'p',
 	                    null,
-	                    "This is working."
+	                    'This is working.'
 	                ),
 	                _react2.default.createElement(
-	                    "p",
+	                    'p',
 	                    null,
 	                    this.props.name
 	                ),
 	                _react2.default.createElement(
-	                    "p",
+	                    'p',
 	                    null,
 	                    this.state.age
 	                ),
 	                _react2.default.createElement(
-	                    "p",
+	                    'p',
 	                    null,
 	                    this.props.user.hobbies.map(function (hobby, i) {
 	                        return _react2.default.createElement(
-	                            "li",
+	                            'li',
 	                            { key: i },
 	                            hobby
 	                        );
 	                    })
 	                ),
-	                _react2.default.createElement("hr", null),
+	                _react2.default.createElement('hr', null),
 	                this.props.children,
 	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: this.onMakeOlder.bind(this), className: "btn btn-primary" },
-	                    "Make me older!"
+	                    'button',
+	                    { onClick: this.onMakeOlder.bind(this), className: 'btn btn-primary' },
+	                    'Make me older!'
 	                ),
 	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: function onClick() {
-	                            return _this2.onMakeOlder();
-	                        }, className: "btn btn-primary" },
-	                    "Make me older!"
+	                    'button',
+	                    { onClick: this.props.greet, className: 'btn btn-secondary' },
+	                    'Click for alert message'
 	                ),
-	                _react2.default.createElement("hr", null),
 	                _react2.default.createElement(
-	                    "button",
-	                    { onClick: this.props.greet, className: "btn btn-secondary" },
-	                    "Click for alert message"
+	                    'button',
+	                    { onClick: this.onChangeName.bind(this), className: 'btn btn-secondary' },
+	                    'Change name'
 	                )
 	            );
 	        }
@@ -23089,6 +23108,7 @@
 	    name: _react2.default.PropTypes.string,
 	    initialAge: _react2.default.PropTypes.number,
 	    user: _react2.default.PropTypes.object,
+	    link: _react2.default.PropTypes.func,
 	    children: _react2.default.PropTypes.element.isRequired
 	};
 	
